@@ -1,4 +1,4 @@
-# AssemChat Documentation
+# ARM Assembly Chat App Documentation
 
 ## Table of Contents
 
@@ -32,14 +32,17 @@ Before you begin, ensure you have the following:
 1. Clone the AssemChat repository:
 
     ```bash
-    git clone https://github.com/yourusername/assemchat.git
-    cd assemchat
+    git clone git@github.com:Parakhatdin/arm-assembly-chat-app.git
+    cd arm-assembly-chat-app
     ```
 
 2. Build the project using GCC:
 
     ```bash
-    gcc -o assemchat assemchat.s
+    gcc -o server server.s
+    ```
+    ```bash
+    gcc -o client client.s
     ```
 
 ## Usage
@@ -47,13 +50,13 @@ Before you begin, ensure you have the following:
 1. Start the server:
 
     ```bash
-    ./assemchat server
+    ./arm-assembly-chat-app server
     ```
 
 2. Start a client:
 
     ```bash
-    ./assemchat client
+    ./arm-assembly-chat-app client
     ```
 
 3. Follow the on-screen instructions for connecting and chatting.
