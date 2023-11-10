@@ -12,7 +12,7 @@ A lightweight client-server chat application written in ARM assembly language. T
 - Sockets
 
 🚀 **Usage:**
-To run the application, follow the instructions in the [documentation](link-to-docs).
+To run the application, follow the instructions in the [documentation](DOC.md).
 
 🎥 **Demo:**
 Check out the live demo [here](link-to-demo).
