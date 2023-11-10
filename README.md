@@ -21,7 +21,7 @@ Check out the live demo [here](link-to-demo).
 We welcome contributions! Feel free to open issues, submit pull requests, or suggest improvements.
 
 📄 **License:**
-This project is licensed under the [MIT License](link-to-license).
+This project is licensed under the [MIT License](https://github.com/Parakhatdin/arm-assembly-chat-app/blob/main/LICENSE).
 
 📧 **Contact:**
 For questions or feedback, contact us at [email@example.com].
