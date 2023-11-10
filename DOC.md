@@ -32,7 +32,7 @@ Before you begin, ensure you have the following:
 1. Clone the AssemChat repository:
 
     ```bash
-    git clone git@github.com:Parakhatdin/arm-assembly-chat-app.git
+    git clone https://github.com/Parakhatdin/arm-assembly-chat-app.git
     cd arm-assembly-chat-app
     ```
 
