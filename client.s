@@ -9,7 +9,6 @@ server_addr:		.hword 		2 		//AF_INET (IPv4)
 
 					.section	.bss
 server_sockfd:		.byte		0
-accept_sockfd:		.byte		0
 
 
 					.section	.text
@@ -20,14 +19,12 @@ accept_sockfd:		.byte		0
 // ------------------------------------------------------------------------------------------------
 main:
 					bl		createSocket
-					bl		bind
-					bl		listen
+					bl		connect
 
-whileTrue:			bl		accept
-					bl		readFromClient
+whileTrue:			
 					bl		clearBuffer
-					bl		writeToClient
-					bl		closeAccept
+					bl		writeToServer
+					bl		readFromServer
 					bl		closeServer
 
 
@@ -54,48 +51,22 @@ createSocket:
 // ------------------------------------------------------------------------------------------------
 // Bind Socket
 // ------------------------------------------------------------------------------------------------
-bind:
+connect:
 					adr		x1, server_sockfd
 					ldr		x0, [x1]
 					ldr		x1, =server_addr
 					mov		x2, #16
-					mov		x8, #200
+					mov		x8, #203
 					svc		0
 					ret
 
-
-// ------------------------------------------------------------------------------------------------
-// Listen Socket
-// ------------------------------------------------------------------------------------------------
-listen:
-					adr		x1, server_sockfd
-					ldr		x0, [x1]				// changing status to listining
-					mov		x1, #5
-					mov		x8, #201
-					svc		0
-					ret
 			
-
-// ------------------------------------------------------------------------------------------------
-// Accept Socket
-// ------------------------------------------------------------------------------------------------
-accept:				
-					adr		x1, server_sockfd
-					ldr		x0, [x1]				// accepting 
-					mov		x1, #0
-					mov		x2, #0
-					mov		x8, #202
-					svc		0
-					adr		x1, accept_sockfd		// Store accept_sockfd address into x1
-					str		x0, [x1]				// Store value from x0(socket file descriptor) into address from x1
-					ret
-
 
 // ------------------------------------------------------------------------------------------------
 // Read Socket
 // ------------------------------------------------------------------------------------------------
-readFromClient:
-					adr		x1, accept_sockfd
+readFromServer:
+					adr		x1, server_sockfd
 					ldr		x0, [x1]
 					adr		x1, buffer
 					mov		x2, #1024
@@ -114,31 +85,20 @@ readFromClient:
 // ------------------------------------------------------------------------------------------------
 // PrintAcceptedValue
 // ------------------------------------------------------------------------------------------------
-writeToClient:		
+writeToServer:		
 					mov		x0, #0
 					adr		x1, buffer
 					mov		x2, #1024
 					mov		x8, #63
 					svc		0
 
-					adr		x1, accept_sockfd
+					adr		x1, server_sockfd
 					ldr		x0, [x1]
 					adr		x1, buffer
 					mov		x2, #1024
 					mov		x8, #64
 					svc		0
 
-					ret
-
-
-// ------------------------------------------------------------------------------------------------
-// CloseAccept
-// ------------------------------------------------------------------------------------------------
-closeAccept:		
-					adr		x1, accept_sockfd
-					ldr		x0, [x1]
-					mov		x8, #57
-					svc		0
 					ret
 
 
